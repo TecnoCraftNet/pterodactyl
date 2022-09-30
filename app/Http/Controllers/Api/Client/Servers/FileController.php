@@ -4,6 +4,7 @@ namespace Pterodactyl\Http\Controllers\Api\Client\Servers;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Http\Response;
+use Pterodactyl\Http\Requests\Api\Client\Servers\Files\DownloadFileRequest;
 use Pterodactyl\Models\Server;
 use Illuminate\Http\JsonResponse;
 use Pterodactyl\Facades\Activity;
@@ -89,7 +90,7 @@ class FileController extends ClientApiController
      *
      * @throws \Throwable
      */
-    public function download(GetFileContentsRequest $request, Server $server)
+    public function download(DownloadFileRequest $request, Server $server)
     {
         $token = $this->jwtService
             ->setExpiresAt(CarbonImmutable::now()->addMinutes(15))
